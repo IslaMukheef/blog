@@ -1,174 +1,150 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog</title>
+  <title>Isla Mukheef | blog</title>
   <style>
+    * { box-sizing: border-box; }
     html{
-        background-color: #C2A2D4; 
-        
+        background-color: #C2A2D4;
     }
     body {
       border-radius: 25px;
       background-color: rgba(18, 5, 20, 0.8);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
       font-family: monospace;
-      overflow-y: auto; 
-      
       color: #ffffff;
-      max-width: max-content;
-      margin-top: 3%;
-      padding: 2%;
-      margin-left: 20%;
-      margin-right: 20%;
-      
-      
+      max-width: 1100px;
+      width: 90%;
+      margin: 3% auto;
+      padding: 2.5%;
     }
-
     .headertag {
       color: #0f0;
       text-align: center;
     }
     .verticalLine {
-    border-top: thick solid #725a5a;
-    border-radius: 24px;
-    border-width: 2px;
+      border-top: thick solid #725a5a;
+      border-radius: 24px;
+      border-width: 2px;
     }
     a {
       color: #ff9933;
       text-decoration: none;
+      word-break: break-word;
     }
-
     a:hover {
       text-decoration: underline;
     }
-
     .section {
       margin-bottom: 20px;
     }
-
-
+    .blog-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .list-heading {
+      color: #0f0;
+      font-size: 18px;
+      margin: 1.2em 0 0.4em;
+    }
+    .pinned .blog-container {
+      border: 1px solid #ff9933;
+      position: relative;
+    }
+    .pin-badge {
+      color: #ff9933;
+      font-size: 12px;
+      float: right;
+    }
     .blog-container{
         background-color: rgba(71, 43, 77, 0.8);
-        padding: 1%;
-        margin: 1%;
+        padding: 1em;
+        margin: 1em 0;
         border-radius: 25px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        overflow-wrap: break-word;
+    }
+    .blog-container a {
+        font-size: 18px;
     }
     .p-summary{
-        color:aliceblue;
-        font-size:13px;
+        color: aliceblue;
+        font-size: 13px;
     }
     .p-date{
         font-style: italic;
+        font-size: 12px;
+        color: #cfc2d4;
     }
     .p-aboutme{
         font-size: 14px;
     }
- 
-  .b-exit{
-    background-color: red;
-    border-radius: 25px;
-    width: 1.6%;
-    height: 1%;
-    text-align: center;
-    margin: 5px 0;
-    border: none;
-    text-decoration: none;
-    font-size: 15px;
-    cursor: pointer;
-    float: right;
-    color: red;
-    
-  }
-  
- 
-
+    .b-exit{
+      background-color: red;
+      border-radius: 50%;
+      width: 14px;
+      height: 14px;
+      border: none;
+      cursor: pointer;
+      float: right;
+      color: transparent;        /* hides the "x", leaving just the red dot */
+      overflow: hidden;
+      text-decoration: none;
+    }
+    @media (max-width: 600px) {
+      body {
+        margin: 0;
+        border-radius: 0;
+        padding: 1em;
+      }
+    }
   </style>
 </head>
 <body>
-    <a type="button" class="b-exit" href="https://www.islamukheef.ca">x</a>
+  <a type="button" class="b-exit" href="https://www.islamukheef.ca">x</a>
   <h1 class="headertag">Isla Mukheef | blog</h1>
   <div class="section">
-    
-    <p class="p-aboutme"> I love yapping about computer stuff especially the things that I find interesting. Why only yap in person when I can yap to the internet as well!</p>
+    <p class="p-aboutme">I love yapping about computer stuff especially the things that I find interesting. Why only yap in person when I can yap to the internet as well!</p>
   </div>
 
   <!-- blog -->
-  <div class="verticalLine" ></div>
-  <div class="blog-container">
-        <h2> <a href="/7">Building a Linux-Style File Explorer: Recreating the ‘ls’ Command in C</a>
-        </h2>
-        <p class="p-summary">
-            A Step-by-Step Guide to coding a Linux-Inspired File Lister
-        </p>
-        <p class="p-date">8 min read - Feb-01-2025</p>     
-  </div>
-    <!-- blog -->
-  <div class="verticalLine" ></div>
-  <div class="blog-container">
-        <h2> <a href="/6">Implementing the redo(Ctrl + Y) Functionality with Circular Queues in C</a>
-        </h2>
-        <p class="p-summary">
-            This is a continuation of the previous undo implementation article
-        </p>
-        <p class="p-date">7 min read - Dec-30-2024</p>
-    </div>
+  <div class="verticalLine"></div>
 
-    <!-- blog -->
-  <div class="verticalLine" ></div>
-  <div class="blog-container">
-        <h2> <a href="/5">Implementing the Undo (Ctrl + Z) Functionality with Circular Queues in C</a>
-        </h2>
-        <p class="p-summary">
-           How to Implement ctrl + z for a text editor in c
-        </p>
-        <p class="p-date">8 min read - Dec-29-2024</p>
-    </div>
+  {% assign pinned_posts = site.posts | where: "pinned", true %}
+  {% if pinned_posts.size > 0 %}
+    <h2 class="list-heading">~/pinned</h2>
+    <ul class="blog-list pinned">
+      {% for post in pinned_posts %}
+        <li>
+          <div class="blog-container">
+            <span class="pin-badge">[pinned]</span>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+            {% if post.summary %}<p class="p-summary">{{ post.summary }}</p>{% endif %}
+            <p class="p-date">{{ post.date | date: "%B %d, %Y" }}</p>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+    <h2 class="list-heading">~/posts</h2>
+  {% endif %}
 
-    <!-- blog -->
-  <div class="verticalLine" ></div>
-  <div class="blog-container">
-        <h2> <a href="/4">Structure padding and memory waste in C</a>
-        </h2>
-        <p class="p-summary">
-            why compilers add paddings
-        </p>
-        <p class="p-date">2 min read - Dec-07-2024</p>
-    </div>
-
-    <!-- blog -->
-  <div class="verticalLine" ></div>
-  <div class="blog-container">
-        <h2> <a href="/3">Building a Simple 64-Bit Server in Assembly with NASM</a>
-        </h2>
-        <p class="p-summary">
-            
-        </p>
-        <p class="p-date">10 min read - Nov-30-2024</p>
-    </div>
-
-    <!-- blog -->
-  <div class="verticalLine" ></div>
-  <div class="blog-container">
-        <h2> <a href="/2">UD2 — Anti Decompiler</a>
-        </h2>
-        <p class="p-summary">
-            This technique is really easy to bypass so I will talk a bit about it and I will show different ways to bypass it.
-        </p>
-        <p class="p-date">2 min read - Apr-06-2022</p>
-    </div>
-
-    <!-- blog -->
-  <div class="verticalLine" ></div>
-  <div class="blog-container">
-        <h2> <a href="/1">WannaCry Static Analysis</a>
-        </h2>
-        <p class="p-summary">
-            This is a continuation of the previous undo implementation article
-        </p>
-        <p class="p-date">5 min read - Apr-15-2021</p>
-    </div>
+  <ul class="blog-list">
+    {% for post in site.posts %}
+      {% unless post.pinned %}
+      <li>
+        <div class="blog-container">
+          <a href="{{ post.url }}">{{ post.title }}</a>
+          {% if post.summary %}<p class="p-summary">{{ post.summary }}</p>{% endif %}
+          <p class="p-date">{{ post.date | date: "%B %d, %Y" }}</p>
+        </div>
+      </li>
+      {% endunless %}
+    {% endfor %}
+  </ul>
 </body>
 </html>
