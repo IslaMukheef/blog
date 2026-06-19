@@ -3,7 +3,6 @@ layout: post
 title:  "WannaCry Static Analysis"
 date:   2021-04-15 
 categories: Security
-pinned: true
 summary: A static analysis walkthrough of the WannaCry ransomware sample — unpacking it, finding the zip password, and digging into the binary.
 ---
 Stuff will be used:
