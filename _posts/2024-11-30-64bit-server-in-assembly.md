@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Building a Simple 64-Bit Server in Assembly with NASM"
-date:   2022-04-06 
+date:   2024-11-30 
 categories: coding, low-level
 summary: How to create a simple 64 bit server with NASM assembly!
 ---
