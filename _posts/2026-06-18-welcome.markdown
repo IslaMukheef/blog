@@ -1,0 +1,10 @@
+---
+layout: post
+title:  "Blog is being transfered"
+date:   2026-06-18 21:10:10 -0400
+pinned: true
+categories: update
+summary: An update on moving the blog from Medium to my current website.
+---
+Hello, I am migrating my blog from [Medium](https://medium.com/@islamukheef) to my own site (hosted on GitHub) instead!
+I don't like that Medium puts ads on my _free_ blogs! After all, I don't write blog posts to monetize them. I know that they allow people to put ads on their writing, but I never signed up for this, and I wish to keep my writing free for everyone. Their decision to put ads on my blog made me reconsider my use of their platform, and so I've decided to host it on my own website instead.
