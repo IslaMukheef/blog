@@ -9,12 +9,19 @@
     * { box-sizing: border-box; }
     html{
         background-color: #C2A2D4;
+        /* stop Android Chrome from auto-inflating text inconsistently */
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        overflow-x: hidden;            /* no stray horizontal scroll on mobile */
     }
     body {
       border-radius: 25px;
       background-color: rgba(18, 5, 20, 0.8);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-      font-family: monospace;
+      /* real monospace stack: bare "monospace" renders tiny on Android Chrome */
+      font-family: "SF Mono", "Roboto Mono", Menlo, Consolas, "DejaVu Sans Mono", "Liberation Mono", monospace;
+      font-size: 16px;
+      line-height: 1.6;
       color: #ffffff;
       max-width: 1100px;
       width: 90%;
@@ -53,6 +60,10 @@
     .blog-container p {
         font-size: 16px;
     }
+    .blog-container pre,
+    .blog-container code {
+        font-family: "SF Mono", "Roboto Mono", Menlo, Consolas, "DejaVu Sans Mono", "Liberation Mono", monospace;
+    }
     .blog-container pre {
         background-color: rgba(112, 86, 117, 0.8);
         padding: 1em;
@@ -60,8 +71,10 @@
         border-radius: 25px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         overflow-x: auto;          /* long code scrolls inside the box */
+        -webkit-overflow-scrolling: touch;
         white-space: pre;
         max-width: 100%;
+        font-size: 14px;           /* keeps wide code from forcing tiny zoom on Android */
     }
     .blog-container img {
         display: block;            /* drops captions below the image */
@@ -123,6 +136,27 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     }
     .rec-card a{ font-size: 16px; }
+    .ref-card{
+        display: block;
+        background-color: rgba(71, 43, 77, 0.8);
+        border-left: 4px solid #ff9933;
+        padding: 0.8em 1em;
+        margin: 1.5em 0;
+        border-radius: 18px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        text-decoration: none;
+    }
+    .ref-card:hover{ text-decoration: none; box-shadow: 0 4px 24px rgba(255,153,51,0.35); }
+    .ref-card .ref-label{
+        display: block;
+        color: #0f0;
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+    .ref-card .ref-title{
+        color: #ff9933;
+        font-size: 16px;
+    }
     .rec-card .rec-date{
         font-style: italic;
         font-size: 12px;
